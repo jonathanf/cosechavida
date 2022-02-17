@@ -1,0 +1,7 @@
+{
+  "name": "cosechavida_v1.0",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
