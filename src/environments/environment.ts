@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  bd: 'cosechavida.org',
+  rutas:{
+    login:'https://cosechavida.lalibre.net/api/auth/token',
+    producto: 'https://cosechavida.lalibre.net/api/product.product',
+    order: 'https://cosechavida.lalibre.net/api/purchase.order',
+    orderline:'https://cosechavida.lalibre.net/api/purchase.order.line'
+
+  },
 };
 
 /*
