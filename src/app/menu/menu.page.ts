@@ -3,6 +3,8 @@ import { Storage, StoragePlugin } from '@capacitor/storage';
 import { PostServiceService } from 'src/app/services/post-service.service'; //importamos nuestro service
 import { Router,NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoadinggenericService } from 'src/app/services/loading-generic/loadinggeneric.service';
+
 
 
 interface Oferta {
@@ -46,7 +48,9 @@ export class MenuPage implements OnInit {
   constructor(
     public postServices:PostServiceService,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public loading: LoadinggenericService,
+
 
     ) { }
 
@@ -56,6 +60,8 @@ export class MenuPage implements OnInit {
   async sincprod(){
 
     try{
+      this.loading.present();
+
   console.log(localStorage.getItem("token"))
   
     await this.postServices.getProd(localStorage.getItem("token"))
@@ -71,9 +77,14 @@ export class MenuPage implements OnInit {
               })
               const item = await Storage.get({ key: 'products' });
               console.log(item);  
+              this.loading.dismissed();
+
               this.presentToast('Productos sincronizados con éxito');
                 }
-                catch(error) {await this.presentToast('Error de internet');
+                
+                catch(error) {
+                  this.loading.dismissed();
+                  await this.presentToast('Error de internet');
               }
               }
 
@@ -87,7 +98,10 @@ export class MenuPage implements OnInit {
 
       try
       {
-      
+        this.loading.present();
+        const i1 = await Storage.get({ key: 'oferta' });
+        this.itemsO = JSON.parse(i1.value.toString());
+        console.log('2++>'+this.itemsO);  
                 const partner_id = await localStorage.getItem("partner_id")
                 await this.postServices.postOrder(partner_id, localStorage.getItem("token"))
                 .then(data => {
@@ -98,9 +112,6 @@ export class MenuPage implements OnInit {
                 .catch(function(e) {
                 });
 
-
-                const i1 = await Storage.get({ key: 'oferta' });
-                this.itemsO = JSON.parse(i1.value.toString());
                 console.log('2++>'+this.itemsO);  
 
                 for(var i3 = 0; i3 < this.itemsO.length ; i3++){
@@ -127,9 +138,13 @@ export class MenuPage implements OnInit {
                     key: 'oferta',
                     value: ''
                   })
+                  this.loading.dismissed();
+
                   await this.presentToast('Oferta sincronizada con éxito');
+        
       }
-      catch(error) {await this.presentToast('Error de internet');
+      catch(error) {                this.loading.dismissed();
+        await this.presentToast('No existe oferta a ser enviada');
       }
               }
 
@@ -138,6 +153,12 @@ export class MenuPage implements OnInit {
 
               }
 
+              async salir(){
+                localStorage.setItem("token","");
+                localStorage.setItem("partner_id","");
+                this.router.navigate(['home']);
+
+              }
     
               async presentToast(msg) {
                 const toast = await this.toastController.create({
@@ -146,6 +167,7 @@ export class MenuPage implements OnInit {
                 });
                 toast.present();
               }
+
   
   
 }

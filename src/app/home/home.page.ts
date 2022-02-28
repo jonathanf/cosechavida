@@ -25,7 +25,13 @@ export class HomePage {
     public postServices:PostServiceService,
     private router: Router,) {}
   ngOnInit() {
-
+    const storage = Object.entries(localStorage);
+    const found = storage.find(([key]) => /.*token$/.test(key));
+    if (found[1])
+    {
+      this.router.navigate(['menu']);
+    }
+    console.log(found[0], found[1]);
 
     console.log()
   }
@@ -35,6 +41,7 @@ export class HomePage {
       //console.log(form);
     //  this.updated = form;
    // });                
+   this.loading.present();
 
               document.getElementById("msg").innerHTML = '';
               this.postServices.getPosts(data.value.name,data.value.password )
@@ -54,6 +61,7 @@ export class HomePage {
       
 
                 data.resetForm(); 
+                
               //  this.loginSubscription.unsubscribe();
 
 
@@ -61,8 +69,6 @@ export class HomePage {
   async olvidar(){
     localStorage.setItem("token","");
     localStorage.setItem("partner_id","");
-
-
   }
 
 

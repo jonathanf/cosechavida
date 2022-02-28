@@ -8,6 +8,7 @@ import { OfertaPageRoutingModule } from './oferta-routing.module';
 
 import { OfertaPage } from './oferta.page';
 import { IonicSelectableModule } from '@ionic-selectable/angular';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { IonicSelectableModule } from '@ionic-selectable/angular';
     FormsModule,
     IonicModule,
     OfertaPageRoutingModule,
-    IonicSelectableModule
+    IonicSelectableModule, Ng2SearchPipeModule
   ],
   declarations: [OfertaPage]
 })

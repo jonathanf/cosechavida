@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicSelectableModule } from '@ionic-selectable/angular';
 
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -18,7 +18,7 @@ import { IonicSelectableModule } from '@ionic-selectable/angular';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule   , HttpClientModule,   IonicSelectableModule
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule   , HttpClientModule,   IonicSelectableModule, Ng2SearchPipeModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

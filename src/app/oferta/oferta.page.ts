@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonicSelectableComponent } from '@ionic-selectable/angular';
 import { Storage, StoragePlugin } from '@capacitor/storage';
 import { NgForm, FormGroup, FormControl, FormBuilder} from '@angular/forms';
+
 interface Oferta {
   id: number;
   name: string;
@@ -9,7 +11,10 @@ interface Oferta {
   uom: number;
   price: number;
 }
-
+class Port {
+  public id: number;
+  public name: string;
+}
 
 @Component({
   selector: 'app-oferta',
@@ -17,6 +22,18 @@ interface Oferta {
   styleUrls: ['./oferta.page.scss'],
 })
 export class OfertaPage implements OnInit {
+  users = [
+		{
+			id: 0,
+			name: "Simon Grimm",
+			country: "Germany",
+		},
+		{
+			id: 1,
+			name: "Max Lynch",
+			country: "Wisconsin",
+		}]
+
   ofertas: Oferta[] = [];
   itemsO: Oferta[] = [];
   tempVariable: boolean = false;
@@ -24,9 +41,40 @@ export class OfertaPage implements OnInit {
   public itemsF: any[];
   selectedValue;
   public nameType: string = "";
+  searchTerms: string;
 
-  constructor() {        
+	@ViewChild("selectComponent") selectComponent: IonicSelectableComponent;
+	toggle = true;
+	group = null;
+	selected = [];
+	selectedUsers = null;
+  constructor() {         
 }
+
+
+userChanged(event: { component: IonicSelectableComponent; value: any }) {
+  console.log("Selected: ", event);
+}
+openFromCode() {
+  this.selectComponent.open();
+}
+
+clear() {
+  this.selectComponent.clear();
+  this.selectComponent.close();
+}
+
+toggleItems() {
+  this.selectComponent.toggleItems(this.toggle);
+  this.toggle = !this.toggle;
+}
+
+confirm() {
+  this.selectComponent.confirm();
+  this.selectComponent.close();
+}
+
+
   async ngOnInit() {
     const i = await Storage.get({ key: 'products' });
     this.items = JSON.parse(i.value.toString());
@@ -93,6 +141,10 @@ export class OfertaPage implements OnInit {
   }
 
 
-  
 
 }
+
+
+  
+
+

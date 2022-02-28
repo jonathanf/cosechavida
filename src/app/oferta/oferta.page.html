@@ -23,14 +23,17 @@
   <ion-label>Ingrese los productos y las cantidades que  pondrá a disposición de la plataforma</ion-label>
 
   <ion-item>
+    <ion-searchbar placeholder="Filtre el producto" [(ngModel)]="searchTerms" name ="barsearch" showCancelButton="focus" animated></ion-searchbar>
+
     <ion-label>Producto</ion-label>
     <ion-select name="prod" [(ngModel)]="nameType"  required >
-      <ion-select-option *ngFor="let item of itemsF" [value]="item">
+      <ion-select-option *ngFor="let item of itemsF| filter: searchTerms" [value]="item">
         {{item.name}}
       </ion-select-option>
-    </ion-select> 
-
+    </ion-select>
   </ion-item>
+
+
       </ion-col>
     </ion-row>
   <ion-row >
@@ -50,7 +53,7 @@
         <ion-item *ngFor="let item of ofertas">
 
           <ion-label>{{item.name}}</ion-label>
-          <ion-note slot="start" color="success">{{item.cantidad}}</ion-note>
+          <ion-label color="success"><h2>{{item.cantidad}}</h2></ion-label>
           <ion-button slot="end"  (click)="eliminarItem(item)">
             <ion-icon name="trash-outline" ></ion-icon> 
           </ion-button>
