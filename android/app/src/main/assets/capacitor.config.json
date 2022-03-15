@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "cosechavida_v1.0",
+	"appId": "org.cosechavidaproductor.productor",
+	"appName": "Cosecha&Vida Producto",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

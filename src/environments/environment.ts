@@ -7,7 +7,7 @@ export const environment = {
   bd: 'cosechavida.org',
   rutas:{
     login:'https://cosechavida.lalibre.net/api/auth/token',
-    producto: 'https://cosechavida.lalibre.net/api/product.product',
+    producto: 'https://cosechavida.lalibre.net/api/product.product?domain=[("type","ilike","product"), ("active","ilike","true")]&fields=["name","uom_id","lst_price", "type", "active"]',
     order: 'https://cosechavida.lalibre.net/api/purchase.order',
     orderline:'https://cosechavida.lalibre.net/api/purchase.order.line'
 

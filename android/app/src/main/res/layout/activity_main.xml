@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+  <ImageButton
+    android:id="@+id/imageButton"
+    android:layout_width="536dp"
+    android:layout_height="730dp"
+    android:src="@drawable/splash_removebg_preview" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
