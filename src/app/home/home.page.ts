@@ -68,14 +68,16 @@ export class HomePage {
                 this.loading.dismissed();
               })
               .catch(function(e) {
-                document.getElementById("msg").innerHTML = 'Por favor, revise los datos ingresados';
                 this.loading.dismissed();
+
+                document.getElementById("msg").innerHTML = 'Por favor, revise los datos ingresados';
 
               });
       
 
                 data.resetForm(); 
-                
+                this.loading.dismissed();
+
               //  this.loginSubscription.unsubscribe();
 
 
