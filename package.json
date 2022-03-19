@@ -1,8 +1,8 @@
 {
   "name": "org.cosechavidaproductor.productor",
   "version": "1.0.8",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "LaLibre.net Tecnologías Comunitarias",
+  "homepage": "https://lalibre.net/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -71,5 +71,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.4.4"
   },
-  "description": "An Ionic project"
+  "description": "Sistema de envió de ofertas de producción Agroecológica"
 }
