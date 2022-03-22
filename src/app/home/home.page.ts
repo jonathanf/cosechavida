@@ -58,9 +58,10 @@ export class HomePage {
    this.loading.present();
 
               document.getElementById("msg").innerHTML = '';
-              this.postServices.getPosts(data.value.name,data.value.password )
+              await this.postServices.getPosts(data.value.name,data.value.password )
               .then(data => {
                 console.log(data['result']['response']['data']['access_token']);
+                console.log("==>",data['result']['response']['data']['partner_id']);
                 localStorage.setItem("token",data['result']['response']['data']['access_token']);
                 localStorage.setItem("partner_id",data['result']['response']['data']['partner_id']);
 
