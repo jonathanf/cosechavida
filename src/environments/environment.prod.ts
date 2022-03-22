@@ -3,16 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   bd: 'cosechavida.org',
   rutas:{
     login:'https://cosechavida.lalibre.net/api/auth/token',
-    producto: 'https://cosechavida.lalibre.net/api/product.product',
+    producto: 'https://cosechavida.lalibre.net/api/product.product?domain=[("type","ilike","product"), ("active","ilike","true")]&fields=["name","uom_id","lst_price", "type", "active"]',
     order: 'https://cosechavida.lalibre.net/api/purchase.order',
     orderline:'https://cosechavida.lalibre.net/api/purchase.order.line'
 
   },
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

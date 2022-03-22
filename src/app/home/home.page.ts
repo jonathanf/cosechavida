@@ -69,14 +69,14 @@ export class HomePage {
               })
               .catch(function(e) {
                 this.loading.dismissed();
+                data.resetForm(); 
 
                 document.getElementById("msg").innerHTML = 'Por favor, revise los datos ingresados';
 
               });
       
+              this.loading.dismissed();
 
-                data.resetForm(); 
-                this.loading.dismissed();
 
               //  this.loginSubscription.unsubscribe();
 
