@@ -56,8 +56,9 @@ export class PostServiceService {
       this.httpClient.post(this.urlO,body,{headers}).subscribe(data=>{
           this.order_id = JSON.parse( JSON.stringify(data['result']));
           console.log('PO++>'+JSON.stringify(data['result']));
+          resolve(this.order_id['response']['data'])
 
-          resolve(this.order_id['response']['data'][0]['display_name']+'-'+this.order_id['response']['data'][0]['date_order'].substr(0, 10))
+        //  resolve(this.order_id['response']['data'][0]['display_name']+'-'+this.order_id['response']['data'][0]['date_order'].substr(0, 10))
       },error=>{
         console.log(error);
       });

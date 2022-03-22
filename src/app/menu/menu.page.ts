@@ -15,6 +15,8 @@ const isEmptyCart: boolean= true;
 
 interface Oferta {
   id: number;
+  order: string;
+  date: string;
   name: string;
   cantidad: number;
   uom:number;
@@ -23,6 +25,8 @@ interface Oferta {
 
 interface Order {
   order_id: number;
+  order: string;
+  date: string;
   name: string;
   product_qty: number;
   date_planned:string;
@@ -34,6 +38,8 @@ interface Ofertase {
   id: number;
   item:{
     order_id: number;
+    order: string;
+    date: string;
     name: string;
     product_qty: number;
     date_planned:string;
@@ -56,7 +62,9 @@ export class MenuPage implements OnInit {
   export = null;
   newProduct = 'My cool product';
   testValue = {};
-  orderValue;
+  orderValue: number;
+  ordernameV: string;
+  orderdateV: string;
   ofertas: Oferta[] = [];
   itemsO: Oferta[] = [];
 
@@ -95,7 +103,7 @@ export class MenuPage implements OnInit {
       .then((db: SQLiteObject) => {
         this.database = db; 
 
-        db.executeSql('create table if not exists items(order_id VARCHAR(32), name VARCHAR(32),product_qty VARCHAR(32), product_uom VARCHAR(32),product_id VARCHAR(32),price_unit VARCHAR(32))', [])
+        db.executeSql('create table if not exists items(order_id VARCHAR(32),order VARCHAR(32), date VARCHAR(32), name VARCHAR(32),product_qty VARCHAR(32), product_uom VARCHAR(32),product_id VARCHAR(32),price_unit VARCHAR(32))', [])
           .then(() => console.log('Executed SQL'))
           .catch(e => console.log(e));
     
@@ -184,8 +192,16 @@ export class MenuPage implements OnInit {
                 const partner_id = await localStorage.getItem("partner_id")
                 await this.postServices.postOrder(partner_id, localStorage.getItem("token"))
                 .then(data => {
-                  this.orderValue = data;
+                  this.orderValue = data[0]['id'];
+
+                  this.ordernameV = data[0]['display_name'];
+
+                  this.orderdateV = data[0]['date_order'].substr(0, 10);
                   console.log('1++>'+this.orderValue);  
+
+                  console.log('1++>'+this.ordernameV);  
+
+                  console.log('1++>'+this.orderdateV);  
 
                 })
                 .catch(function(e) {
@@ -197,6 +213,8 @@ export class MenuPage implements OnInit {
                 for(var i3 = 0; i3 < this.itemsO.length ; i3++){
                   this.o1.push({
                     order_id: this.orderValue,
+                    order:this.ordernameV,
+                    date: this.orderdateV,
                     name: this.itemsO[i3].name,
                     product_qty: this.itemsO[i3].cantidad,
                     date_planned:'01-01-2022',
@@ -211,8 +229,8 @@ export class MenuPage implements OnInit {
                   this.oferte.push(this.o1[i3]);
 
                   try{
-                  let q = "INSERT INTO items(order_id,name,product_qty,product_uom,product_id,price_unit) VALUES (?,?,?,?,?,?)";
-                  let data = [this.orderValue, this.itemsO[i3].name, this.itemsO[i3].cantidad, this.itemsO[i3].uom,this.itemsO[i3].id,this.itemsO[i3].price];
+                  let q = "INSERT INTO items(order_id,order,date,name,product_qty,product_uom,product_id,price_unit) VALUES (?,?,?,?,?,?)";
+                  let data = [this.orderValue,this.ordernameV,this.orderdateV, this.itemsO[i3].name, this.itemsO[i3].cantidad, this.itemsO[i3].uom,this.itemsO[i3].id,this.itemsO[i3].price];
             
                   this.database.executeSql(q,data);
                   this.database.executeSql('SELECT * FROM items', [])

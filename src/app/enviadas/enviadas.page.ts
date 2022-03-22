@@ -8,6 +8,8 @@ import { stringify } from 'querystring';
 
 interface Oferta {
   id: number;
+  order: string;
+  date: string;
   name: string;
   cantidad: number;
   uom: number;

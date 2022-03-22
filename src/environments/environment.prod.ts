@@ -1,14 +1,15 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+
 export const environment = {
   production: false,
   bd: 'cosechavida.org',
   rutas:{
-    login:'https://cosechavida.org/api/auth/token',
-    producto: 'https://cosechavida.org/api/product.product?domain=[("type","ilike","product"), ("active","ilike","true")]&fields=["name","uom_id","lst_price", "type", "active"]',
-    order: 'https://cosechavida.org/api/purchase.order',
-    orderline:'https://cosechavida.org/api/purchase.order.line'
+    login:'https://cosechavida.lalibre.net/api/auth/token',
+    producto: 'https://cosechavida.lalibre.net/api/product.product?domain=[("type","ilike","product"), ("active","ilike","true")]&fields=["name","uom_id","lst_price", "type", "active"]',
+    order: 'https://cosechavida.lalibre.net/api/purchase.order',
+    orderline:'https://cosechavida.lalibre.net/api/purchase.order.line'
 
   },
 };
