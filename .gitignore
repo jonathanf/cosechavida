@@ -16,6 +16,8 @@ $RECYCLE.BIN/
 *.log
 log.txt
 npm-debug.log*
+yarn.lock
+
 
 /.angular
 /.idea
@@ -30,3 +32,4 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+/android/.idea
