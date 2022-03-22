@@ -229,7 +229,7 @@ export class MenuPage implements OnInit {
                   this.oferte.push(this.o1[i3]);
 
                   try{
-                  let q = "INSERT INTO items(order_id,order,date,name,product_qty,product_uom,product_id,price_unit) VALUES (?,?,?,?,?,?)";
+                  let q = "INSERT INTO items(order_id,order,date,name,product_qty,product_uom,product_id,price_unit) VALUES (?,?,?,?,?,?,?,?)";
                   let data = [this.orderValue,this.ordernameV,this.orderdateV, this.itemsO[i3].name, this.itemsO[i3].cantidad, this.itemsO[i3].uom,this.itemsO[i3].id,this.itemsO[i3].price];
             
                   this.database.executeSql(q,data);
