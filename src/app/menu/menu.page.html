@@ -2,8 +2,9 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
 
-  <ion-title class="ion-text-center">Oferta de productos</ion-title>
-  <ion-button slot="end" [routerLink]="['/home']">        <ion-icon name="log-out"></ion-icon>
+  <ion-title class="ion-text-center">OFERTA DE PRODUCTOS</ion-title>
+  <ion-button slot="end" [routerLink]="['/home']">
+    <ion-icon name="log-out"></ion-icon>
   </ion-button>
 </ion-toolbar>
 
@@ -15,13 +16,14 @@
 
     <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" >
       <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" >
-        <ion-label>Bienvenid@, aquí podrás ofertar tus productos para ser comercializados a traves de la página web Cosecha & Vida.</ion-label>
-      </ion-col>
-    <ion-button size="large" (click)="oferta()"expand="block">Registro de oferta</ion-button>
-    <ion-button size="large" (click)="enviaroferta()"expand="block" color="warning">Enviar Oferta</ion-button>
-    <ion-button size="large" (click)="sincprod()"expand="block" color="tertiary">Sincronizar productos</ion-button>
-    <ion-button size="large" (click)="ofertasEnviadas()"expand="block" color="tertiary">Ofertas enviadas</ion-button>
+      <ion-label>Bienvenid@, aquí podrás ofertar tus productos para ser comercializados a traves de la página web Cosecha & Vida.</ion-label>
+      <ion-label></ion-label>
+    </ion-col>
 
+    <ion-button size="large" (click)="sincprod()"expand="block" color="tertiary">1. Sincronizar productos</ion-button>
+    <ion-button size="large" (click)="oferta()"expand="block">2. Registro de oferta</ion-button>
+    <ion-button size="large" (click)="enviaroferta()"expand="block" color="warning">3. Enviar Oferta</ion-button>
+    <ion-button size="large" (click)="ofertasEnviadas()"expand="block" color="tertiary">Ofertas enviadas</ion-button>
     <ion-button size="large" (click)="ayuda()"expand="block" color="success">Ayuda</ion-button>
     <ion-button size="large" (click)="salir()"expand="block" color="primary">Salir</ion-button>
 
